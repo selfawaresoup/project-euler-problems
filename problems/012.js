@@ -24,7 +24,6 @@ while (true) {
   n++;
   sum += n;
   const f = getFactors(sum)
-  console.log(sum, f.length)
   if (f.length > 500) {
     break;
   }

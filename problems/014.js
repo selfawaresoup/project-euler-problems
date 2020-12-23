@@ -1,20 +1,33 @@
 #!/usr/bin/env node
 
-const assert = require('assert');
-const { log, range, resultCheck } = require('../lib/lib')
+const { log, resultCheck } = require('../lib/lib')
 
-const collatz = (n, steps = 1) => {
+const collatz = n => (n % 2 === 0) ? (n/2) : (3 * n + 1)
+
+const cache = {}
+const count = (n) => {
   if (n === 1) {
-    return steps;
-  } else {
-    return collatz( n % 2 === 0 ? n / 2 : 3 * n + 1, steps + 1);
+    return 1
+  }
+
+  const stored = cache[n]
+  if (stored) {
+    return stored
+  }
+
+  l = 1 + count(collatz(n))
+  cache[n] = l
+  return l
+}
+
+let maxL = 1
+let maxN = 0
+for (let n = 1; n < 1e6; n++) {
+  const l = count(n)
+  if (l > maxL) {
+    maxL = l
+    maxN = n
   }
 }
-assert.strictEqual(collatz(1), 1);
-assert.strictEqual(collatz(13), 10);
 
-const result = range(1, 1e6).map(n => [n, collatz(n)])
-  .sort((a, b) => a[1] - b[1])
-  .pop()
-
-resultCheck(result, 837799)
+resultCheck(maxN, 837799)
