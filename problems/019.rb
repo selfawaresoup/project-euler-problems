@@ -1,3 +1,7 @@
+#!/usr/bin/env ruby
+
+require "../lib/lib"
+
 def leap_year(y)
   if y % 400 == 0
     true
@@ -32,7 +36,7 @@ ml = month_length(month, year)
 sundays = 0
 
 loop do
-  puts "#{year}, #{month}, #{day}, #{weekday}"
+  # puts "#{year}, #{month}, #{day}, #{weekday}"
 
   if year >= 1901 && weekday == 6 && day == 1
     sundays += 1
@@ -56,4 +60,6 @@ loop do
   weekday = (weekday + 1) % 7
 end
 
-pp sundays
+result = sundays
+assert_equal 171, result
+puts result

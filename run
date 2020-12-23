@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+set -e
+
+echo "Testing library ..."
+cd lib
+for x in *.test.*; do
+  ./$x; done
+  cd ..
+echo -e "Done\n"
+
+echo "Preparing data ..."
+mkdir -p data
+cd data
+[ ! -f p067_triangle.txt ] && curl https://projecteuler.net/project/resources/p067_triangle.txt --output p067_triangle.txt
+cd ..
+echo -e "Done\n"
+
+
+echo "Running problems ..."
+cd problems
+FILES=$(find . -type f -perm +111 | sort)
+for file in $FILES; do
+  echo $(basename $file)
+  ./$file
+  echo
+done
+cd ..
+echo -e "Done\n"

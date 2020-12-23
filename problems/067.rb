@@ -1,5 +1,8 @@
-# file from https://projecteuler.net/project/resources/p067_triangle.txt
-triangle_str = File.open("p067_triangle.txt").read
+#!/usr/bin/env ruby
+
+require "../lib/lib"
+
+triangle_str = File.open("../data/p067_triangle.txt").read
 
 triangle = triangle_str.split("\n").map do |l|
   l.split(" ").map do |s|
@@ -16,4 +19,6 @@ end
   end
 end
 
-puts triangle[0][0]
+result = triangle[0][0]
+assert_equal 7273, result
+puts result

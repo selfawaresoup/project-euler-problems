@@ -1,5 +1,6 @@
-const assert = require('assert');
-const { range, prod, max, log } = require('./lib');
+#!/usr/bin/env node
+
+const { range, prod, max, resultCheck, assertEqual } = require('../lib/lib');
 
 let input = `08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
@@ -36,16 +37,16 @@ const getCell = (grid, y, x) => {
   const cell = row[x] || 1;
   return cell;
 }
-assert.strictEqual(getCell(grid, 0, 0), 8)
-assert.strictEqual(getCell(grid, 19, 0), 1)
-assert.strictEqual(getCell(grid, 0, 19), 8)
-assert.strictEqual(getCell(grid, 19, 19), 48)
+assertEqual(getCell(grid, 0, 0), 8)
+assertEqual(getCell(grid, 19, 0), 1)
+assertEqual(getCell(grid, 0, 19), 8)
+assertEqual(getCell(grid, 19, 19), 48)
 
 const r = range(0, 3)
 const getSeries = (grid, y, x, v) => r.map(step => getCell(grid, y + step * v[0], x + step * v[1]))
-assert.strictEqual(getSeries(grid, 6, 8, [1, 1]).reduce(prod, 1), 1788696)
+assertEqual(getSeries(grid, 6, 8, [1, 1]).reduce(prod, 1), 1788696)
 
-grid.map(
+const result = grid.map(
   (row, y) => row.map(
     (cell, x) => vectors.map(
       v => getSeries(grid, y, x, v).reduce(prod, 1)
@@ -54,4 +55,5 @@ grid.map(
 )
 .flat(2)
 .reduce(max, 0)
-.passthrough(log);
+
+resultCheck(result, 70600674)

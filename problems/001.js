@@ -1,3 +1,7 @@
+#!/usr/bin/env node
+
+const {resultCheck} = require('../lib/lib')
+
 let sum = 0;
 
 for (let i = 1; i < 1000; i++) {
@@ -6,4 +10,4 @@ for (let i = 1; i < 1000; i++) {
     }
 }
 
-console.log(sum);
+resultCheck(sum, 233168)

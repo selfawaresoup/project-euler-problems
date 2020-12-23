@@ -1,4 +1,6 @@
-const { prod, log } = require('./lib');
+#!/usr/bin/env node
+
+const { prod, log, resultCheck } = require('../lib/lib');
 
 const input = `73167176531330624919225119674426574742355349194934
 96983520312774506326239578318016984801869478851843
@@ -38,5 +40,6 @@ const result = getSeries(n)
   .map(s => s.split(''))
   .map(d => d.reduce(prod, 1))
   .sortNumeric()
-result.passthrough(log)
-console.log(result.pop())
+  .pop()
+
+resultCheck(result, 23514624000)

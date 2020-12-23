@@ -1,4 +1,6 @@
-const { sum, log } = require('./lib');
+#!/usr/bin/env node
+
+const { sum, println, resultCheck } = require('../lib/lib');
 
 const num = [1];
 for (let n = 0; n < 1000; n++) {
@@ -18,4 +20,6 @@ for (let n = 0; n < 1000; n++) {
   }
 }
 
-num.reduce(sum, 0).passthrough(log)
+const result = num.reduce(sum, 0)
+
+resultCheck(result, 1366)

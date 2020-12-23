@@ -1,3 +1,7 @@
+#!/usr/bin/env ruby
+
+require "../lib/lib"
+
 module Seventeen
   WORDS = {
     1000000 => "million",
@@ -68,4 +72,6 @@ module Seventeen
 
 end
 
-pp Seventeen::range_sum(1..1000).join('').length
+result = Seventeen::range_sum(1..1000).join('').length
+assert_equal 21124, result
+puts result

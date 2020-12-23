@@ -1,3 +1,7 @@
+#!/usr/bin/env ruby
+
+require "../lib/lib"
+
 triangle_str  = <<TRIANGLE
 75
 95 64
@@ -31,4 +35,6 @@ end
   end
 end
 
-puts triangle[0][0]
+result = triangle[0][0]
+assert_equal 1074, result
+puts result

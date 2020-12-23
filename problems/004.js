@@ -1,5 +1,6 @@
-const assert = require('assert');
-const {range} = require('./lib')
+#!/usr/bin/env node
+
+const {range, resultCheck, assertEqual} = require('../lib/lib')
 
 const isPalindrome = n => {
     const d = n.toString().split('');
@@ -12,8 +13,8 @@ const isPalindrome = n => {
     return true;
 }
 
-assert.ok(isPalindrome(12021));
-assert.equal(isPalindrome(12345), false);
+assertEqual(isPalindrome(12021), true);
+assertEqual(isPalindrome(12345), false);
 
 
 
@@ -23,4 +24,6 @@ let nums = range(100,999)
   .filter(isPalindrome)
   .sort((a,b) => a - b);
 
-console.log(nums.pop())
+const result = nums.pop()
+
+resultCheck(result, 906609)

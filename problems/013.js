@@ -1,4 +1,6 @@
-const { sum } = require('./lib')
+#!/usr/bin/env node
+
+const { sum, resultCheck } = require('../lib/lib')
 
 const input = `37107287533902102798797998220837590246510135740250
 46376937677490009712648124896970078050417018260538
@@ -103,4 +105,6 @@ const input = `37107287533902102798797998220837590246510135740250
 
 const nums = input.split('\n').map(s => parseInt(s, 10));
 
-console.log(nums.reduce(sum, 0).toString().replace('.', '').substr(0, 10));
+const result = nums.reduce(sum, 0).toString().replace('.', '').substr(0, 10)
+
+resultCheck(result, '5537376230')

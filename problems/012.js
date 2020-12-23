@@ -1,4 +1,6 @@
-const { sqrt } = require('./lib')
+#!/usr/bin/env node
+
+const { sqrt, resultCheck } = require('../lib/lib')
 
 const getFactors = n => {
   const factors = [1, n];
@@ -27,3 +29,5 @@ while (true) {
     break;
   }
 }
+
+resultCheck(sum, 76576500)
